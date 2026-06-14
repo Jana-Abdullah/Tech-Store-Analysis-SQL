@@ -1,123 +1,95 @@
-# SQL-Data-Analysis
-# Tech Store BD – Sales & Marketing Analytics Project
+# Tech Store Sales & Marketing Analytics – SQL Project
 
 ## Project Overview
-This project is a comprehensive SQL-based analytics solution designed to analyze **sales performance**, **customer behavior**, and **marketing campaign effectiveness**.  
-It simulates a realistic business environment for a technology retail company selling electronic products such as laptops, smartphones, and accessories.
+This project is an end-to-end SQL analytics solution built on a **multi-table relational database** for a tech retail store.
 
-The main objective is to transform raw transactional data into meaningful business insights using **structured SQL views** and **analytical queries**.
+It analyzes **sales performance**, **customer behavior**, **product trends**, and **marketing campaign ROI**, transforming transactional data into decision-ready business insights.
 
----
-
-## Business Objectives
-- Analyze overall sales performance and revenue trends
-- Understand customer purchasing behavior
-- Evaluate product performance
-- Measure marketing campaign effectiveness and ROI
-- Compare campaign budgets against generated revenue
+The project follows a real-world analytics workflow: reusable **views** are built as a reporting layer first, then structured analysis files answer specific business questions on top of them.
 
 ---
 
 ## Database Schema
-The database consists of the following core tables:
 
-- **Customers** – Customer demographic and location data
-- **Orders** – Order-level transactional data
-- **OrderItems** – Product-level order details
-- **Products** – Product catalog and categories
-- **MarketingCampaigns** – Campaign details and budgets
+The database consists of **5 related tables**:
 
----
-
-## Key SQL Views
-
-### 1. vw_SalesAnalysis
-A central analytical view that consolidates:
-- Orders
-- Customers
-- Products
-- Order items  
-
-**Purpose:**
-- Sales analysis
-- Product performance evaluation
-- Customer behavior insights
-- KPI calculations
+| Table | Description |
+|---|---|
+| `Customers` | Customer profiles (city, gender, assigned campaign) |
+| `Orders` | Order header data (date, payment method) |
+| `OrderItems` | Order line items (quantity, price) |
+| `Products` | Product catalog (name, category) |
+| `MarketingCampaigns` | Campaign details (name, budget) |
 
 ---
 
-### 2. vw_MarketingCampaigns
-Focuses on linking sales transactions to marketing campaigns.
+## Project Structure
 
-**Purpose:**
-- Campaign revenue analysis
-- Customer acquisition analysis
-- Campaign performance comparison
-
----
-
-### 3. vw_BudgetAnalysis
-Designed specifically for financial evaluation of marketing campaigns.
-
-**Purpose:**
-- Budget vs revenue comparison
-- ROI calculation
-- Identifying profitable and loss-making campaigns
+| File | Purpose |
+|---|---|
+| `Views_01.sql` | Reusable reporting views (`vw_SalesAnalysis`, `vw_MarketingCampaigns`, `vw_BudgetAnalysis`) |
+| `Sales_Analysis_02.sql` | Sales trends by month/weekday, best & worst sellers, payment, city, and gender analysis |
+| `Marketing_Analysis_03.sql` | Campaign performance, ROI calculation, and profit/loss classification |
+| `KPI_Analysis_04.sql` | Top customers, Average Order Value (AOV), product performance summary |
+| `Advanced_Analysis_05.sql` | Window functions: MoM growth (LAG), running totals, ranking per category, customer segmentation (NTILE) |
+| `Assign_Customers_To_Campaigns.sql` | Data-quality fix: balanced customer-to-campaign assignment using modulo logic |
 
 ---
 
 ## Key Business Questions Answered
 
-### Sales Analysis
-- What are the total sales by month?
-- Which product categories generate the highest revenue?
-- What payment methods drive the most sales?
-- Which cities contribute the most to revenue?
-- How do sales vary by gender?
+### Sales Performance
+- How do sales trend month over month, and what is the growth rate?
+- Which weekdays generate the highest revenue?
+- Which products are the best and worst sellers?
 
-### Customer Behavior
-- Who are the top customers by total revenue?
-- What is the average order value (AOV) per customer?
-- How frequently do customers place orders?
+### Customer Insights
+- Who are the top customers by total spending and AOV?
+- How do sales differ by city, gender, and payment method?
+- How can customers be segmented into spending tiers (VIP → Low)?
 
-### Product Performance
-- Top-selling products by revenue
-- Top-selling products by quantity
-- Products with the lowest sales (opportunities for improvement)
-- Products frequently purchased together
+### Marketing Insights
+- Which campaigns generate the highest ROI?
+- Which campaigns fail to cover their budget?
+- How many customers does each campaign reach?
 
-### Marketing & Budget Analysis
-- Most successful campaigns by revenue
-- Campaigns with the highest customer reach
-- Campaign ROI (Return on Investment)
-- Campaigns that exceeded their allocated budgets
+---
+
+## SQL Concepts Used
+- Multi-table `JOIN`s & relational data modeling
+- `VIEW`s as a reporting layer
+- `CTE (WITH)`
+- Window Functions: `LAG()`, `RANK()`, `NTILE()`, `SUM() OVER()`
+- `CASE` expressions for classification (Profit / Loss, customer tiers)
+- Aggregations with `GROUP BY` / `HAVING`
+- Date functions: `FORMAT()`, `DATENAME()`, `DATEPART()`
+- Data-quality fixes with `UPDATE` + modulo logic
 
 ---
 
 ## Technologies Used
-- **SQL Server**
-- **T-SQL**
-- **Power BI** (for dashboard visualization)
+- SQL Server (T-SQL)
+- SQL Server Management Studio (SSMS)
+- Power BI (dashboard visualization)
 
 ---
 
-## Data Design Notes
-- Clean and consistent data (no NULLs in key relationships)
-- Realistic numeric distributions for accurate analysis
-- Campaign assignment simulated using modulo-based logic to ensure balanced customer distribution
+## Dashboard Preview
+<!-- Add your Power BI screenshot here:
+![Tech Store Dashboard](images/dashboard.png)
+-->
 
 ---
 
 ## Future Enhancements
-- Introduce dirty data scenarios for data cleaning practice
-- Advanced segmentation using RFM analysis
-- Time-series forecasting
-- Python-based data preprocessing
-- Automated Power BI refresh pipelines
+- RFM customer segmentation
+- Stored procedures for automated monthly reporting
+- Time-series sales forecasting
+- Customer churn analysis
 
 ---
 
 ## Author
-**jana A**  
-Computer Science Student | Aspiring Data Analyst  
+**Jana Abdullah**
+Computer Science Student | Aspiring Data Analyst
 SQL • Data Analysis • Business Intelligence
